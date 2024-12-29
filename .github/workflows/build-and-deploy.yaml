@@ -1,0 +1,35 @@
+name: Build PDF and Create Release
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup texlive
+        run: sudo apt-get install texlive-full
+      - name: Build PDF
+        run: /bin/bash build.sh
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y-%m-%dT%H:%M:%SZ')"
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          # Date format: YYYY-MM-DDTHH:MM:SSZ as Tag Name
+          tag_name: nightly-${{ steps.date.outputs.date }}
+          release_name: nightly-build-${{ steps.date.outputs.date }}
+          draft: false
+          prerelease: true
+      - name: Upload PDF File
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./build/CodeUp.pdf
+          asset_name: CodeUp.pdf
+          asset_content_type: application/pdf

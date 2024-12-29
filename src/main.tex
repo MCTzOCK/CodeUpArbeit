@@ -1,0 +1,81 @@
+\documentclass[10pt,a4paper]{report}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{titlesec}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{subfiles}
+\usepackage{ngerman}
+\usepackage[left=2cm,right=3cm,top=2cm,bottom=2cm,headheight=14.5pt,footskip=30pt,headsep=.2in]{geometry}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage[
+    colorlinks=false,
+    pdftitle={Besondere Lernleistung - CodeUp},
+    pdfauthor={Ben Siebert},
+    pdfsubject={CodeUp},
+    pdfkeywords={CodeUp, Besondere Lernleistung, Informatik},
+    pdfproducer={LaTeX},
+    pdfcreator={pdflatex}
+]{hyperref}
+\usepackage{xcolor}
+\usepackage[backend=biber]{biblatex}
+\usepackage{fancyhdr}
+
+\addbibresource{src/bibliography.bib}
+
+
+\fancypagestyle{cpr}
+{
+    \pagestyle{fancy}
+    \fancyfoot{}
+    \fancyfoot[L]{Besondere Lernleistung - CodeUp}
+    \fancyfoot[C]{Ben Siebert 2025}
+    \fancyfoot[R]{\thepage}
+}
+
+\setcounter{tocdepth}{5}
+\setcounter{secnumdepth}{5}
+
+\renewcommand{\baselinestretch}{1.5}\normalsize
+\titleformat{\chapter}{\normalfont\LARGE}{\thechapter.}{15pt}{\Large}\titlespacing*{\chapter}{0pt}{*0}{10pt}
+\newcommand{\bscite}[1]{\citeauthor{#1}: \citetitle{#1} (Stand: \citedate{#1}) \citeurl{#1}}
+
+
+\preto{\subsubsection}{\Needspace{5\baselineskip}} 
+\title{Besondere Lernleistung - CodeUp}
+\author{Ben Siebert}
+\date{
+    \begin{tabularx}{14cm}{XX}
+        \textbf{Betreuer}: & Herr Werner \\
+        \textbf{Schule}: & Gymnasium Holthausen Hattingen \\
+        \textbf{Leitfach}: & Informatik \\
+        \textbf{Thema}: & CodeUp - Einfach Programmieren lernen \\
+        \textbf{Version}: & \today \\
+        \textbf{Jahrgang} & Abitur 2025
+    \end{tabularx}
+}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+\setcounter{page}{0}
+\thispagestyle{empty}
+
+\twocolumn
+\subfile{src/chapters/intro.tex}
+
+\chapter*{Literaturverzeichnis}
+\addcontentsline{toc}{chapter}{Literaturverzeichnis}
+\printbibliography[heading=none]
+
+\chapter*{Anhang}
+\addcontentsline{toc}{chapter}{Anhang}
+\subfile{src/chapters/appendix.tex}
+
+\end{document}
