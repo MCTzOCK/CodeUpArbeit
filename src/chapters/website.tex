@@ -1,0 +1,29 @@
+\documentclass{subfiles}
+
+\begin{document}
+
+\chapter{Webseite}\label{ch:website}
+Die Webseite ist das Herzstück der CodeUp Plattform.
+Sie ist der primäre Zugangspunkt für die Nutzer und bietet alle Funktionen, die für das Lernen und Programmieren benötigt werden.
+In diesem Kapitel wird die Entwicklung der Webseite von den Anfängen bis zum aktuellen Stand beschrieben.
+
+\section{Technische Hintergründe}\label{sec:website-tech}
+Die Webseite ist als Multi-Page-Application (MPA) konzipiert, was bedeutet, dass sie aus mehreren einzelnen Seiten besteht, die über Links miteinander verbunden sind.
+Realisiert wird dies mit dem JavaScript-Framework Next.js\footnote{\bscite{nextjs}}, das auf React\footnote{\bscite{react}} basiert und eine serverseitige Generierung von Webseiten ermöglicht.
+Dadurch wird eine schnelle Ladezeit und eine gute Suchmaschinenoptimierung (SEO) erreicht, was für eine Lernplattform besonders wichtig ist.
+Durch die Komplexität der Plattform und die Vielzahl von unterstützten Protokollen (z.B. HTTP, WebSockets, etc.) wurde ein eigener HTTP-Server implementiert,
+der auf dem node.js\footnote{\bscite{nodejs}} \dq http\dq-Modul basiert.
+Dieser Server stellt zum Großteil nur eine Verbindung zur Next.js Bibliothek her und leitet Anfragen entsprechend weiter.
+Neben dieser Funktionalität bietet er eine WebSocket Schnittstelle mit einem Socket.IO-Server\footnote{\bscite{socketio}} an, die für jegliche Echtzeitkommunikation verwendet wird.
+Entwickelt wurden alle Komponenten der Webseite mit TypeScript\footnote{\bscite{typescript}}, um die Codequalität und -sicherheit zu erhöhen.
+Beim Start der Anwendung wird eine Verbindung zu einem MongoDB\footnote{\bscite{mongodb}}-Server hergestellt, um Daten zu speichern und abzurufen.
+Die Wahl viel auf MongoDB, da eine No-SQL-Datenbank für die Anwendung besser geeignet ist, als eine relationale Datenbank.
+Durch die Verwendung einer solcne No-SQL-Datenbank können die Daten flexibler gespeichet werden, als es bei der klassischen tabellenbasierten Speicherung der Fall wäre,
+da jedes Dokument in der Datenbank individuell gestaltet werden kann und nicht zwingend einem festen Schema folgen muss.
+Des Weiteren wird durch eine No-SQL-Datenbank eine höhere Sicherheit gewährleistet, da MongoDB keine SQL-Injections zulässt, da es keine SQL-Abfragen gibt.
+Der Quellcode der Webseite ist in einer Turborepo\footnote{\bscite{turborepo}}-Struktur organisiert, was bedeutet, dass alle Komponenten in einem einzigen Repository liegen
+und so einfacher miteinander interagieren können.
+Diese Komponenten umfassen unter anderen Komponenten für die Benutzeroberfläche, die Kommunikation mit dem Server, die Verwaltung der Datenbank und die Integration von Drittanbieterdiensten.
+
+
+\end{document}

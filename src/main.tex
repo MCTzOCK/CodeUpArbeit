@@ -2,6 +2,7 @@
 
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
+\usepackage{charter}
 \usepackage{titlesec}
 \usepackage{tikz}
 \usepackage{pgfplots}
@@ -26,6 +27,7 @@
 \usepackage{fancyhdr}
 
 \addbibresource{src/bibliography.bib}
+\pgfplotsset{compat=1.18}
 
 
 \fancypagestyle{cpr}
@@ -40,7 +42,7 @@
 \setcounter{tocdepth}{5}
 \setcounter{secnumdepth}{5}
 
-\renewcommand{\baselinestretch}{1.5}\normalsize
+\renewcommand{\baselinestretch}{1.25}\normalsize
 \titleformat{\chapter}{\normalfont\LARGE}{\thechapter.}{15pt}{\Large}\titlespacing*{\chapter}{0pt}{*0}{10pt}
 \newcommand{\bscite}[1]{\citeauthor{#1}: \citetitle{#1} (Stand: \citedate{#1}) \citeurl{#1}}
 
@@ -56,7 +58,9 @@
         \textbf{Thema}: & CodeUp - Einfach Programmieren lernen \\
         \textbf{Version}: & \today \\
         \textbf{Jahrgang} & Abitur 2025
-    \end{tabularx}
+    \end{tabularx} \\
+    \vspace{2cm}
+    Aus gründen der besseren Lesbarkeit wird in dieser Arbeit das generische Maskulinum verwendet. Weibliche und anderweitige Geschlechteridentitäten werden dabei ausdrücklich eingeschlossen.
 }
 
 \begin{document}
@@ -67,15 +71,20 @@
 \setcounter{page}{0}
 \thispagestyle{empty}
 
-\twocolumn
+%\twocolumn
 \subfile{src/chapters/intro.tex}
 
-\chapter*{Literaturverzeichnis}
-\addcontentsline{toc}{chapter}{Literaturverzeichnis}
-\printbibliography[heading=none]
+\subfile{src/chapters/website.tex}
+\subfile{src/chapters/mobile.tex}
+\subfile{src/chapters/server.tex}
 
 \chapter*{Anhang}
 \addcontentsline{toc}{chapter}{Anhang}
 \subfile{src/chapters/appendix.tex}
+
+%\onecolumn
+\section*{Literaturverzeichnis}
+\addcontentsline{toc}{section}{Literaturverzeichnis}
+\printbibliography[heading=none]
 
 \end{document}
