@@ -12,7 +12,7 @@ Die Webseite ist als Multi-Page-Application (MPA) konzipiert, was bedeutet, dass
 Realisiert wird dies mit dem JavaScript-Framework Next.js\footnote{\bscite{nextjs}}, das auf React\footnote{\bscite{react}} basiert und eine serverseitige Generierung von Webseiten ermöglicht.
 Dadurch wird eine schnelle Ladezeit und eine gute Suchmaschinenoptimierung (SEO) erreicht, was für eine Lernplattform besonders wichtig ist.
 Durch die Komplexität der Plattform und die Vielzahl von unterstützten Protokollen (z.B. HTTP, WebSockets, etc.) wurde ein eigener HTTP-Server implementiert,
-der auf dem node.js\footnote{\bscite{nodejs}} \dq http\dq-Modul basiert.
+der auf dem Node.js\footnote{\bscite{nodejs}} \dq http\dq-Modul basiert.
 Dieser Server stellt zum Großteil nur eine Verbindung zur Next.js Bibliothek her und leitet Anfragen entsprechend weiter.
 Neben dieser Funktionalität bietet er eine WebSocket Schnittstelle mit einem Socket.IO-Server\footnote{\bscite{socketio}} an, die für jegliche Echtzeitkommunikation verwendet wird.
 Entwickelt wurden alle Komponenten der Webseite mit TypeScript\footnote{\bscite{typescript}}, um die Codequalität und -sicherheit zu erhöhen.
@@ -24,6 +24,9 @@ Des Weiteren wird durch eine No-SQL-Datenbank eine höhere Sicherheit gewährlei
 Der Quellcode der Webseite ist in einer Turborepo\footnote{\bscite{turborepo}}-Struktur organisiert, was bedeutet, dass alle Komponenten in einem einzigen Repository liegen
 und so einfacher miteinander interagieren können.
 Diese Komponenten umfassen unter anderen Komponenten für die Benutzeroberfläche, die Kommunikation mit dem Server, die Verwaltung der Datenbank und die Integration von Drittanbieterdiensten.
+Für die Speicherung von Dateien wird ein MinIO\footnote{\bscite{minio}}-Object-Storage-Server verwendet, der eine einfache und effiziente Möglichkeit bietet, Dateien zu speichern und abzurufen.
+Durch diesen Objekt-Storage können programmatisch Dateien hochgeladen und heruntergeladen werden, ohne dass ein direkter Zugriff auf das Dateisystem des Servers erforderlich ist.
+Details zur Bereitstellung und Skalierung der Anwendung werden im Kapitel \ref{sec:infra-deployment} beschrieben.
 
 
 \end{document}
