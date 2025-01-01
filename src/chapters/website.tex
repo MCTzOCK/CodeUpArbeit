@@ -29,4 +29,22 @@ Durch diesen Objekt-Storage können programmatisch Dateien hochgeladen und herun
 Details zur Bereitstellung und Skalierung der Anwendung werden im Kapitel \ref{sec:infra-deployment} beschrieben.
 
 
+\section{Benutzerkonten und Sicherheit}\label{sec:website-security}
+CodeUp bietet die Möglichkeit, sich für ein Benutzerkonto zu registrieren, um alle Funktionen der Plattform nutzen zu können.
+Dabei wird ein Benutzername, eine E-Mail-Adresse und ein Passwort benötigt.
+Zusätzlich muss jeder Benutzer noch seinen Vor- und Nachnamen angeben, um die persönliche Ansprache zu ermöglichen.
+Um die Sicherheit der Benutzerkonten zu gewährleisten, werden die Passwörter mit einer starken Hashfunktion gehasht und nie im Klartext gespeichert.
+Es wird ein sha256\footnote{\bscite{sha256}}-Algorithmus verwendet, da dieser als sicher gilt.
+Um eine zusätzliche Sicherheitsstufe zu erreichen, können Benutzer optional die Zwei-Faktor-Authentifizierung (2FA) aktivieren.
+Dabei wird ein zusätzlicher Code benötigt, der über eine Authentifizierungs-App generiert wird.
+Nur bei der korrekten Eingabe von Passwort und Code wird der Zugriff auf das Benutzerkonto gewährt.
+Um die Sicherheit der Benutzerkonten weiter zu erhöhen, wird bei jedem Login-Versuch eine E-Mail an den Benutzer gesendet, um ihn über den Login zu informieren.
+Bei einer erfolgreichen Anmeldung wird ein JSON-Web-Token (JWT)\footnote{\bscite{jwt-rfc}} generiert, der als Authentifizierungstoken dient.
+Ein solcher JWT besteht aus drei Teilen: einem Header, einem Payload und einer Signatur.
+Durch die Singatur wird sichergestellt, dass der Token nicht manipuliert wurde und nur von der CodeUp-Plattform generiert wurde.
+Der Token ist in der Standardkonfiguration nur 30 Tage gültig und erfordert danach eine erneute Anmeldung.
+Bei einer Anmeldung wird der generierte Token im LocalStorage des Browsers gespeichert und bei jder zukünftigen Anfrage an den Server mitgesendet.
+Dadurch wird sichergestellt, dass der Benutzer eingeloggt bleibt, auch wenn die Seite neu geladen wird.
+Um die Sicherheit der Benutzerdaten zu gewährleisten, wird die gesamte Kommunikation zwischen Client und Server über HTTPS verschlüsselt.
+
 \end{document}
