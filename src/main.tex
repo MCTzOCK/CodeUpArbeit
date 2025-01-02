@@ -1,11 +1,11 @@
-\documentclass[10pt,a4paper]{report}
+\documentclass[11pt,a4paper]{report}
 
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
-\usepackage{charter}
 \usepackage{titlesec}
 \usepackage{tikz}
 \usepackage{pgfplots}
+\usepackage{tgtermes}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{subfiles}
@@ -30,6 +30,17 @@
 \pgfplotsset{compat=1.18}
 
 
+
+\fancypagestyle{plain}
+{
+    \pagestyle{fancy}
+    \fancyfoot{}
+    \fancyfoot[L]{Besondere Lernleistung - CodeUp}
+    \fancyfoot[C]{Ben Siebert 2025}
+    \fancyfoot[R]{\thepage}
+}
+
+
 \fancypagestyle{cpr}
 {
     \pagestyle{fancy}
@@ -47,7 +58,7 @@
 \newcommand{\bscite}[1]{\citeauthor{#1}: \citetitle{#1} (Stand: \citedate{#1}) \citeurl{#1}}
 
 
-\preto{\subsubsection}{\Needspace{5\baselineskip}} 
+%\preto{\subsubsection}{\Needspace{5\baselineskip}} 
 \title{Besondere Lernleistung - CodeUp}
 \author{Ben Siebert}
 \date{
@@ -63,13 +74,21 @@
     Aus gründen der besseren Lesbarkeit wird in dieser Arbeit das generische Maskulinum verwendet. Weibliche und anderweitige Geschlechteridentitäten werden dabei ausdrücklich eingeschlossen.
 }
 
+\pagestyle{cpr}
+
 \begin{document}
 
 \maketitle
 
+\newpage
+
+\addtocontents{toc}{\protect\thispagestyle{empty}}
 \tableofcontents
-\setcounter{page}{0}
 \thispagestyle{empty}
+\newpage
+
+\pagestyle{cpr}
+\setcounter{page}{1}
 
 %\twocolumn
 \subfile{src/chapters/intro.tex}
