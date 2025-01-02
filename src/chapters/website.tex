@@ -58,10 +58,49 @@ In der Navigationsleiste sind alle wichtigen Funktionen kategorisiert und über 
 Die Fußzeile enthält Einstellungen bezüglich der Sprache und weiter Informationen über die Plattform.
 
 \subsubsection{Sprachauswahl}
-Um jedem Benutzer die Möglichkeit zu geben, die CodeUp nutzen zu können, wird die Webseite in mehreren Sprachen angeboten.
 Hierbei ist Deutsch die Standardsprache und bietet die besten Übersetzungen.
-Alle anderen Sprachen (Englisch, Französisch, Spanisch, Italienisch, Niederländisch, Polnisch und Portugiesisch) sind maschinell übersetzt und können deswegen teilweise ungenau sein.
+Alle anderen Sprachen (Englisch, Französisch, Spanisch, Italienisch, Niederländisch, Polnisch und Portugiesisch) sind maschinell übersetzt.
+Die maschinellen Übersetzungen basieren auf der LibreTranslate-API\footnote{\bscite{libretranslate}}, die eine einfache und zuverlässige Möglichkeit bietet, Texte in verschiedene Sprachen zu übersetzen.
+Sprachen, die automatisch übersetzt werden, bieten keine perfekte Übersetzun, sind aber in den meisten Fällen verständlich und ermöglichen dem Benutzer, die Webseite in seiner Muttersprache nutzen zu können.
+Aktuell ist es nicht möglich, Videos in einer anderen Sprache anzusehen, da die Übersetzung von Videos zu teuer und aufwendig wäre.
+
 Die Sprache wird über ein Fragment der URL festgelegt (z.B. \texttt{\dq /de/\dq} für Deutsch, \texttt{\dq /en/\dq} für Englisch, etc.).
+
+\subsubsection{Dashboard}
+Das Dashboard ist die zentrale Anlaufstelle für alle Benutzer und bietet eine Übersicht über alle wichtigen Informationen.
+Hier kriegt der Benutzer eine Übersicht über seine Kurse, Zertifikate, Aufgaben, Flussdiagramme, Snippets und Projekte.
+Ebenfalls gibt es die Möglichkeit, das Dashboard individuell anzupassen, indem der Benutzer die verschiedenen Sektionen verschieben oder ausblenden kann.
+Hierdurch wird der Benutzer aktiv in die Gestaltung seines Dashboards eingebunden und kann es so an seine Bedürfnisse anpassen.
+Das Dashboard ist so gestaltet, dass es auf allen Geräten optimal dargestellt wird und eine intuitive Bedienung ermöglicht.
+Des Weiteren gibt es auf dem Dashboard meist keine direkten Aktionen, sondern lediglich Links zu den entsprechenden Seiten, sodass der Benutzer nicht überfordert wird.
+
+\subsubsection{Einstellungen}
+Über die Einstellungen kann der Benutzer seine persönlichen Daten, wie E-Mail-Adresse, Passwort und Vor- und Nachnamen, ändern.
+Der Benutzername kann allerdings nicht bearbeitet werden, da dieser intern teilweise als eindeutiger Identifikator genutzt wird.
+Die in Kapitel \ref{sec:website-security} beschriebene Zwei-Faktor-Authentifizierung kann hier aktiviert und wieder deaktiviert werden.
+Nachdem der Benutzer die 2FA aktiviert hat, wird er aufgefordert, den angezeigten QR-Code mit einer Authenticator-App zu scannen.
+Die App generiert dann mit dem TOTP-Algorithmus\footnote{\bscite{totp-rfc}} einen sechsstelligen Code, der alle 30 Sekunden wechselt.
+Zum Abschluss der Aktivierung muss der aktuelle Code eingegeben werden, um die 2FA zu bestätigen.
+Für die Deaktivierung muss ebenfalls ein Code eingegeben werden, der nur bei korrekter Eingabe die Zwei-Faktor-Authentifizierung deaktiviert.
+Neben diesen Einstellungen hat der Benutzer auch die Möglichkeit, sein Konto vollständig zu löschen, was allerdings nicht rückgängig gemacht werden kann und deswegen durch mehrere Bestätigungen validiert werden muss.
+
+\subsubsection{Level-System}
+Das Level-System ist eine Art Belohnungssystem, das Benutzer für ihre Aktivitäten auf der Plattform belohnt.
+Aufgeteilt ist das System in einen Level und Erfahrungspunkte (XP).
+Für jeden Level wird eine bestimmte Anzahl an XP benötigt, um ein Level aufzusteigen, wobei ein Abstieg nicht möglich ist.
+Die Formel für die benötigten XP ist:
+\begin{equation}
+    \text{LEVEL} = \left\lceil \text{XP}^{\frac{1}{3}} \right\rceil
+\end{equation}
+Die XP können durch viele verschiedene Aktionen verdient werden, wie z.B. das Erstellen von Projekte, das Abschließen von Zertifikaten oder das Lösen von Challenges.
+
+\subsubsection{Admin-Panel}
+Das Admin-Panel ist ein spezieller Bereich, der Administratoren das Verwalten und Moderieren von CodeUp ermöglicht.
+Es ist so gestaltet, dass es einfach zu bedienen ist und alle Funktionen auf einen Blick einsehbar sind.
+Neben den tatsächlichen Einstellungen gibt es einige Statistiken, wie die Anzahl der Benutzer, Aufrufe auf der Webseite und die Anzahl der erstellten Projekte.
+Zusätzlich zu diesen globalen Analysen gibt es spezifische Analysen für die Aktivität einzelner Benutzer, die primär für die Behebung von Problemen und eine bessere Betreuung der Benutzer genutzt werden.
+Für die bestmögliche Fehlerbehebung ist es Session-Recording-Werkzeug namens rrweb\footnote{\bscite{rrweb}} integriert, das jede Benutzeraktion aufzeichnet und so die Fehleranalyse erleichtert.
+rrweb ist so konfiguriert, dass keine sensiblen Daten aufgezeichnet werden und nur den Administratoren Zugriff zu den Aufnahmen gewährt wird.
 
 
 \end{document}
